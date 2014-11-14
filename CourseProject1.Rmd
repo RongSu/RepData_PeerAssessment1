@@ -23,7 +23,7 @@ filepath <- paste(zipdir,files[1],sep="/")
 activitydata <- read.csv(filepath)
 ```
 
-The second step is to aggregate the data into steps per day and make a histogram of total number of steps taken each day.
+The second step is to aggregate the data into steps per day and make a histogram of total number of steps taken each day. Then calculate Mean and Median.
 ```{r}
 stepsperday <- aggregate(steps ~ date, data=activitydata, FUN=sum, na.action = na.omit)
 hist(stepsperday$steps,main="Total Steps taken each day",
@@ -57,7 +57,7 @@ for(i in 1:dim(activitynew)[1])
   if(is.na(activitynew[i,1]) & length(meanstepsperinterval[which(meanstepsperinterval$interval==activitynew[i,3]),2])>0)
       activitynew[i,1] <- meanstepsperinterval[which(meanstepsperinterval$interval==activitynew[i,3]),2]
 ```
-We will re-calculate the total number of steps per day, mean, and median based on the new data after replacing NAs.
+We will re-calculate the total number of steps per day, mean, and median based on the new data after replacing NAs. Then calculate Mean and Medium again. These values are slightly different from the calculation in step 1. But they are not that different.
 
 ```{r}
 newstepsperday <- aggregate(steps ~ date, data=activitynew, FUN=sum)
@@ -66,7 +66,7 @@ hist(newstepsperday$steps,main="Imputed total Steps taken each day",
 mean(newstepsperday$steps)
 median(newstepsperday$steps)
 ```
-Now we are adding a new factor colunm to the new dataset to identify whether it is weekday or weekend.
+Now we are adding a new factor colunm to the new dataset to identify whether it is weekday or weekend. The following is a plot showing the pattern diffference in terms of steps (average steps cross all days by weekend and weekday) and interval. As it appears, weekend activities seem to be more in steady stream while weekday activities are more concentrated at a range of intervals.
 ```{r}
 activitynew$weekdays <- ifelse(weekdays(as.Date(activitynew$date)) != "Sunday" & weekdays(as.Date(activitynew$date)) != "Saturday", "weekday","weekend")
 newstepsperinterval<- aggregate(steps ~ interval + weekdays, data=activitynew, FUN=mean)
