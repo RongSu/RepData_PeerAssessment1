@@ -40,6 +40,7 @@ We will now plot on 5 minute interval (x-axis) and average steps taken(across al
 ```{r}
 plot(stepsperinterval,type="l")
 ```
+
 As it turns out, the following 5 minute interval is the maximum spike.
 ```{r}
 stepsperinterval[which.max(stepsperinterval$steps),1]
