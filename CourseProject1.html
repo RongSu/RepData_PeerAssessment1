@@ -82,7 +82,7 @@ hist(stepsperday$steps,main=&quot;Total Steps taken each day&quot;,
 <pre><code>## [1] 10766.19</code></pre>
 <pre class="r"><code>median(stepsperday$steps)</code></pre>
 <pre><code>## [1] 10765</code></pre>
-<p>Reshaping the data data by intervals, and steps are the average across all dates.</p>
+<p>Reshaping the data by steps and intervals, and steps are the average across all dates.</p>
 <pre class="r"><code>stepsperinterval&lt;- aggregate(steps ~ interval, data=activitydata, FUN=mean, na.action = na.omit)</code></pre>
 <p>We will now plot on 5 minute interval (x-axis) and average steps taken(across all days) as y-axis. As you may notice, there is a spike on the plot.</p>
 <pre class="r"><code>plot(stepsperinterval,type=&quot;l&quot;)</code></pre>

@@ -32,7 +32,7 @@ mean(stepsperday$steps)
 median(stepsperday$steps)
 ```
 
-Reshaping the data data by intervals, and steps are the average across all dates.
+Reshaping the data by steps and intervals, and steps are the average across all dates.
 ```{r}
 stepsperinterval<- aggregate(steps ~ interval, data=activitydata, FUN=mean, na.action = na.omit)
 ```
